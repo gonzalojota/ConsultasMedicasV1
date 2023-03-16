@@ -1,4 +1,4 @@
-﻿namespace ConsultasMedicas.API.DTOs
+﻿namespace ConsultasMedicas.Common.DTOs
 {
     public class ConsultaDTO
     {

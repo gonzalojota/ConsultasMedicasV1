@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ConsultasMedicas.Core.Entities;
 using ConsultasMedicas.Core.Interfaces;
+using ConsultasMedicas.Common.DTOs;
 
 namespace ConsultasMedicas.API.Controllers
 {
@@ -33,7 +33,7 @@ namespace ConsultasMedicas.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Paciente paciente)
+        public async Task<IActionResult> Create(PacienteCreacionalDTO paciente)
         {
             if (!ModelState.IsValid) return BadRequest();
             var result = await _pacienteService.AddPacienteAsync(paciente);
@@ -41,11 +41,11 @@ namespace ConsultasMedicas.API.Controllers
             return Ok(paciente);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update(Paciente paciente)
+        [HttpPut ("{id}")]
+        public async Task<IActionResult> Update(int id, PacienteCreacionalDTO paciente)
         {
             if (!ModelState.IsValid) return BadRequest();
-            var result = await _pacienteService.UpdatePacienteAsync(paciente);
+            var result = await _pacienteService.UpdatePacienteAsync(id, paciente);
             if (!result) return BadRequest();
             return Ok(paciente);
         }

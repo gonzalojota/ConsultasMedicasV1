@@ -3,6 +3,10 @@
 
 
 
+using ConsultasMedicas.Core.Entities;
+using ConsultasMedicas.Core.Interfaces;
+using ConsultasMedicas.Core.Repositories;
+
 public class MedicoService : IMedicoService
 {
     private readonly IMedicoRepository _medicoRepository;

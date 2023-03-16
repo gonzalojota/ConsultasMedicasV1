@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ConsultasMedicas.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsultasMedicas.Core.Interfaces
+namespace ConsultasMedicas.Core.Repositories
 {
     public interface IMedicoRepository
     {

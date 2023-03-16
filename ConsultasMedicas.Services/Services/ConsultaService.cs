@@ -1,6 +1,10 @@
 ﻿
 
 
+using ConsultasMedicas.Core.Entities;
+using ConsultasMedicas.Core.Interfaces;
+using ConsultasMedicas.Core.Repositories;
+
 public class ConsultaService : IConsultaService
 {
     private readonly IConsultaRepository _consultaRepository;

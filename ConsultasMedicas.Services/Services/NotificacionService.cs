@@ -1,5 +1,9 @@
 ﻿
 
+using ConsultasMedicas.Core.Entities;
+using ConsultasMedicas.Core.Interfaces;
+using ConsultasMedicas.Core.Repositories;
+
 public class NotificacionService : INotificacionService
 {
     private readonly INotificacionRepository _notificacionRepository;

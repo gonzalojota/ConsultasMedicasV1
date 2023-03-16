@@ -1,6 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\ConsultasMedicas.Common.csproj" />
     <ProjectReference Include="..\ConsultasMedicas.Core\ConsultasMedicas.Core.csproj" />
     <ProjectReference Include="..\ConsultasMedicas.Data\ConsultasMedicas.Data.csproj" />
   </ItemGroup>

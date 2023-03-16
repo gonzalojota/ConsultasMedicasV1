@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConsultasMedicas.Core.Entities;
-using ConsultasMedicas.Core.Interfaces;
+using ConsultasMedicas.Core.Repositories;
 using ConsultasMedicas.Data.Context;
 using Microsoft.EntityFrameworkCore;
 

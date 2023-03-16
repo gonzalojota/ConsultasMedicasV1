@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ConsultasMedicas.Core.Entities;
 
 namespace ConsultasMedicas.Core.Interfaces
 {
-    public interface IConsultaRepository
+    public interface IConsultaService
     {
         Task<IEnumerable<Consulta>> GetAllConsultasAsync();
         Task<Consulta> GetConsultaByIdAsync(int id);
