@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +7,8 @@ using ConsultasMedicas.Core.Interfaces;
 
 namespace ConsultasMedicas.API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    //[ApiController]
+    //[Route("api/[controller]")]
     public class MedicosController : ControllerBase
     {
         private readonly IMedicoService _medicoService;
@@ -60,3 +60,4 @@ namespace ConsultasMedicas.API.Controllers
         }
     }
 }
+*/

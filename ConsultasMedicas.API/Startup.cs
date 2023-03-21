@@ -36,7 +36,13 @@ namespace ConsultasMedicas.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ConsultasMedicas API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ConsultasMedicas.API", Version = "v1" });
+
+                c.AddServer(new OpenApiServer
+                {
+                    Url = "http://localhost.com",
+                    Description = "Production server"
+                });
             });
 
             // Configurar AutoMapper
@@ -65,21 +71,20 @@ namespace ConsultasMedicas.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             // Habilita el middleware de Swagger
             app.UseSwagger();
-
-            // Habilita la interfaz de usuario de Swagger
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ConsultasMedicas API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ConsultasMedicas.API v1");
+                // No uses c.RoutePrefix = string.Empty si quieres mantener la ruta predeterminada de Swagger (/swagger)
+                // Usa la siguiente línea si deseas que Swagger sea la página de inicio de tu aplicación:
                 c.RoutePrefix = string.Empty;
-                c.DocExpansion(DocExpansion.None);
             });
 
             app.UseEndpoints(endpoints =>

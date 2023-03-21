@@ -14,7 +14,10 @@ namespace ConsultasMedicas.API
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+
+                    webBuilder.UseStartup<Startup>()
+                        .UseUrls("http://*:5000", "https://*:5001");
+
                 });
     }
 }
