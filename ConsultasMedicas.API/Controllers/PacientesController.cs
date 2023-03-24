@@ -18,14 +18,14 @@ namespace ConsultasMedicas.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<List<PacienteDTO>>> GetAll()
         {
             var pacientes = await _pacienteService.GetAllPacientesAsync();
             return Ok(pacientes);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<PacienteDTO>> GetById(int id)
         {
             var paciente = await _pacienteService.GetPacienteByIdAsync(id);
             if (paciente == null) return NotFound();

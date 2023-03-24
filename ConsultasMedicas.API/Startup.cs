@@ -38,11 +38,32 @@ namespace ConsultasMedicas.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ConsultasMedicas.API", Version = "v1" });
 
+                // Añadir servidor HTTP
                 c.AddServer(new OpenApiServer
                 {
-                    Url = "http://localhost.com",
-                    Description = "Production server"
+                    Url = "http://10.18.19.57:5000",
+                    Description = "Production server (HTTP)"
                 });
+
+                // Añadir servidor HTTPS
+                c.AddServer(new OpenApiServer
+                {
+                    Url = "https://10.18.19.57:5001",
+                    Description = "Production server (HTTPS)"
+                });
+            });
+
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
             });
 
             // Configurar AutoMapper
@@ -73,9 +94,11 @@ namespace ConsultasMedicas.API
 
             //app.UseHttpsRedirection();
 
+            app.UseCors("AllowAll");
+
             app.UseRouting();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             // Habilita el middleware de Swagger
             app.UseSwagger();
