@@ -21,6 +21,7 @@ namespace ConsultasMedicas.API.Controllers
         public async Task<ActionResult<List<PacienteDTO>>> GetAll()
         {
             var pacientes = await _pacienteService.GetAllPacientesAsync();
+
             return Ok(pacientes);
         }
 
@@ -28,7 +29,9 @@ namespace ConsultasMedicas.API.Controllers
         public async Task<ActionResult<PacienteDTO>> GetById(int id)
         {
             var paciente = await _pacienteService.GetPacienteByIdAsync(id);
+
             if (paciente == null) return NotFound();
+
             return Ok(paciente);
         }
 
@@ -36,17 +39,23 @@ namespace ConsultasMedicas.API.Controllers
         public async Task<IActionResult> Create(PacienteCreacionalDTO paciente)
         {
             if (!ModelState.IsValid) return BadRequest();
+
             var result = await _pacienteService.AddPacienteAsync(paciente);
+
             if (!result) return BadRequest();
+
             return Ok(paciente);
         }
 
         [HttpPut ("{id}")]
-        public async Task<IActionResult> Update(int id, PacienteCreacionalDTO paciente)
+        public async Task<IActionResult> Update(int id, PacienteActualizacionDTO paciente)
         {
             if (!ModelState.IsValid) return BadRequest();
+
             var result = await _pacienteService.UpdatePacienteAsync(id, paciente);
+
             if (!result) return BadRequest();
+
             return Ok(paciente);
         }
 
@@ -54,7 +63,9 @@ namespace ConsultasMedicas.API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _pacienteService.DeletePacienteAsync(id);
+
             if (!result) return NotFound();
+
             return Ok();
         }
     }

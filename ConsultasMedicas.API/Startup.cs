@@ -32,7 +32,8 @@ namespace ConsultasMedicas.API
 
             // Configurar la base de datos
             services.AddDbContext<ConsultasMedicasDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+    b => b.MigrationsAssembly("ConsultasMedicas.API")));
 
             services.AddSwaggerGen(c =>
             {

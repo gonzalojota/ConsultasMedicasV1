@@ -11,6 +11,7 @@ namespace ConsultasMedicas.API.Mappings
             CreateMap<Consulta, ConsultaDTO>().ReverseMap();
             CreateMap<Paciente, PacienteDTO>().ReverseMap();
             CreateMap<PacienteCreacionalDTO, Paciente>().ReverseMap();
+            CreateMap<PacienteActualizacionDTO, Paciente>().ReverseMap();
             CreateMap<Medico, MedicoDTO>().ReverseMap();
             CreateMap<Notificacion, NotificacionDTO>().ReverseMap();
         }

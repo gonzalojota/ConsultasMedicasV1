@@ -40,12 +40,12 @@ namespace ConsultasMedicas.Core.Services
             return true;
         }
 
-        public async Task<bool> UpdatePacienteAsync(int id, PacienteCreacionalDTO pacienteCreacionalDto)
+        public async Task<bool> UpdatePacienteAsync(int id, PacienteActualizacionDTO pacienteActualizacionDto)
         {
             var existingPaciente = await _pacienteRepository.GetPacienteByIdAsync(id);
             if (existingPaciente != null)
             {
-                _mapper.Map(pacienteCreacionalDto, existingPaciente);
+                _mapper.Map(pacienteActualizacionDto, existingPaciente);
                 await _pacienteRepository.UpdatePacienteAsync(existingPaciente);
                 return true;
             }

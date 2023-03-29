@@ -16,7 +16,7 @@ namespace ConsultasMedicas.API
                 {
 
                     webBuilder.UseStartup<Startup>()
-                        .UseUrls("http://10.18.19.57:5000", "https://10.18.19.57:5001");
+                        .UseUrls("http://localhost:5000", "https://localhost:5001");
 
                 });
     }
