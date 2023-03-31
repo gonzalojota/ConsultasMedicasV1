@@ -6,6 +6,7 @@ namespace ConsultasMedicas.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+
     public class PacientesController : ControllerBase
     {
         private readonly IPacienteService _pacienteService;

@@ -16,6 +16,7 @@ namespace ConsultasMedicas.API.Mappings
                 .ForMember(dest => dest.FechaCreacion, opt => opt.MapFrom(src => DateTime.UtcNow))
                 .ForMember(dest => dest.FechaModificacion, opt => opt.MapFrom(src => DateTime.UtcNow));
 
+
             CreateMap<PacienteUpdateDto, Paciente>()
                 .ForMember(dest => dest.FechaModificacion, opt => opt.MapFrom(src => DateTime.UtcNow));
 

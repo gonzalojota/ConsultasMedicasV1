@@ -7,11 +7,17 @@ namespace ConsultasMedicas.Common.DTOs
     {
         [Required]
         [MaxLength(50)]
-        public string Nombre { get; set; }
+        public string PrimerNombre { get; set; }
+
+        [MaxLength(50)]
+        public string SegundoNombre { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(50)]
-        public string Apellido { get; set; }
+        public string PrimerApellido { get; set; }
+
+        [MaxLength(50)]
+        public string SegundoApellido { get; set; } = string.Empty;
 
         [Required]
         [DataType(DataType.Date)]
@@ -36,6 +42,10 @@ namespace ConsultasMedicas.Common.DTOs
         [Required]
         [MaxLength(100)]
         public string UsuarioCreacion { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string UsuarioModificacion { get; set; }
     }
 
 }

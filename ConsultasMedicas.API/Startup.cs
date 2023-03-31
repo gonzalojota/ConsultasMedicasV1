@@ -34,14 +34,14 @@ namespace ConsultasMedicas.API
                 // Añadir servidor HTTP
                 c.AddServer(new OpenApiServer
                 {
-                    Url = "http://10.18.19.57:5000",
+                    Url = "http://localhost:5000",
                     Description = "Production server (HTTP)"
                 });
 
                 // Añadir servidor HTTPS
                 c.AddServer(new OpenApiServer
                 {
-                    Url = "https://10.18.19.57:5001",
+                    Url = "https://localhost:5001",
                     Description = "Production server (HTTPS)"
                 });
             });

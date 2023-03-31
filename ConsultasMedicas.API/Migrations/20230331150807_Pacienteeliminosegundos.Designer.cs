@@ -4,6 +4,7 @@ using ConsultasMedicas.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsultasMedicas.API.Migrations
 {
     [DbContext(typeof(ConsultasMedicasDbContext))]
-    partial class ConsultasMedicasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230331150807_Pacienteeliminosegundos")]
+    partial class Pacienteeliminosegundos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,16 +154,6 @@ namespace ConsultasMedicas.API.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PrimerNombre")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("SegundoApellido")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("SegundoNombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");

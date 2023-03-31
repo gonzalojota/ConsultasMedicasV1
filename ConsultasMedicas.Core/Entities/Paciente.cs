@@ -8,11 +8,17 @@ namespace ConsultasMedicas.Core.Entities
 
         [Required]
         [MaxLength(50)]
-        public string Nombre { get; set; }
+        public string PrimerNombre { get; set; }
+
+        [MaxLength(50)]
+        public string SegundoNombre { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string Apellido { get; set; }
+        public string PrimerApellido { get; set; }
+
+        [MaxLength(50)]
+        public string SegundoApellido { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -25,11 +31,11 @@ namespace ConsultasMedicas.Core.Entities
 
         [Phone]
         [MaxLength(20)]
-        public string Telefono { get; set; }
+        public string? Telefono { get; set; }
 
         [Phone]
         [MaxLength(20)]
-        public string TelefonoContacto { get; set; }
+        public string? TelefonoContacto { get; set; }
 
         public DateTime FechaDiagnostico { get; set; }
 

@@ -4,11 +4,17 @@ public class PacienteUpdateDto
 {
     [Required]
     [MaxLength(50)]
-    public string Nombre { get; set; }
+    public string PrimerNombre { get; set; }
 
     [Required]
     [MaxLength(50)]
-    public string Apellido { get; set; }
+    public string PrimerApellido { get; set; }
+
+    [MaxLength(50)]
+    public string SegundoNombre { get; set; }
+
+    [MaxLength(50)]
+    public string SegundoApellido { get; set; }
 
     [Required]
     [DataType(DataType.Date)]
