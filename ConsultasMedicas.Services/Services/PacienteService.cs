@@ -3,8 +3,6 @@ using ConsultasMedicas.Common.DTOs;
 using ConsultasMedicas.Core.Entities;
 using ConsultasMedicas.Core.Interfaces;
 using ConsultasMedicas.Core.Repositories;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ConsultasMedicas.Core.Services
 {
@@ -33,14 +31,14 @@ namespace ConsultasMedicas.Core.Services
             return pacienteDto;
         }
 
-        public async Task<bool> AddPacienteAsync(PacienteCreacionalDTO pacienteCreacionalDto)
+        public async Task<bool> AddPacienteAsync(PacienteCreateDto pacienteCreacionalDto)
         {
             var paciente = _mapper.Map<Paciente>(pacienteCreacionalDto);
             await _pacienteRepository.AddPacienteAsync(paciente);
             return true;
         }
 
-        public async Task<bool> UpdatePacienteAsync(int id, PacienteActualizacionDTO pacienteActualizacionDto)
+        public async Task<bool> UpdatePacienteAsync(int id, PacienteUpdateDto pacienteActualizacionDto)
         {
             var existingPaciente = await _pacienteRepository.GetPacienteByIdAsync(id);
             if (existingPaciente != null)

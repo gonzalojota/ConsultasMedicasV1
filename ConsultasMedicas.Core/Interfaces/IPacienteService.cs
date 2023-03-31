@@ -1,6 +1,4 @@
 ﻿using ConsultasMedicas.Common.DTOs;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ConsultasMedicas.Core.Interfaces
 {
@@ -8,8 +6,8 @@ namespace ConsultasMedicas.Core.Interfaces
     {
         Task<IEnumerable<PacienteDTO>> GetAllPacientesAsync();
         Task<PacienteDTO> GetPacienteByIdAsync(int id);
-        Task<bool> AddPacienteAsync(PacienteCreacionalDTO paciente);
-        Task<bool> UpdatePacienteAsync(int id, PacienteActualizacionDTO paciente);
+        Task<bool> AddPacienteAsync(PacienteCreateDto paciente);
+        Task<bool> UpdatePacienteAsync(int id, PacienteUpdateDto paciente);
         Task<bool> DeletePacienteAsync(int id);
     }
 }

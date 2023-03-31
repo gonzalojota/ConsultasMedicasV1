@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ConsultasMedicas.Core.Entities
+namespace ConsultasMedicas.Common.DTOs
 {
-    public class Paciente
+    // PacienteCreateDto
+    public class PacienteCreateDto
     {
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string Nombre { get; set; }
@@ -31,18 +30,12 @@ namespace ConsultasMedicas.Core.Entities
         [MaxLength(20)]
         public string TelefonoContacto { get; set; }
 
+        [Required]
         public DateTime FechaDiagnostico { get; set; }
 
-        public DateTime FechaCreacion { get; set; }
-
-        public DateTime FechaModificacion { get; set; }
-
+        [Required]
+        [MaxLength(100)]
         public string UsuarioCreacion { get; set; }
-
-        public string UsuarioModificacion { get; set; }
-
-        public virtual ICollection<ConsultaPaciente> ConsultaPacientes { get; set; }
-
-        public virtual ICollection<Notificacion> Notificaciones { get; set; }
     }
+
 }

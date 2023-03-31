@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ConsultasMedicas.Core.Entities;
+﻿using ConsultasMedicas.Core.Entities;
 
 namespace ConsultasMedicas.Core.Interfaces
 {

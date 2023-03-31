@@ -1,18 +1,10 @@
-﻿using AutoMapper;
-using ConsultasMedicas.Core.Interfaces;
+﻿using ConsultasMedicas.Core.Interfaces;
 using ConsultasMedicas.Core.Repositories;
 using ConsultasMedicas.Core.Services;
-using ConsultasMedicas.Data;
 using ConsultasMedicas.Data.Context;
 using ConsultasMedicas.Data.Repositories;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace ConsultasMedicas.API
 {

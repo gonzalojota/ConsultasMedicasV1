@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsultasMedicas.Core.Entities
+﻿namespace ConsultasMedicas.Core.Entities
 {
     public class ConsultaMedico
     {
