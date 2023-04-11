@@ -1,8 +1,6 @@
-﻿/*using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using ConsultasMedicas.Core.Entities;
+﻿/*using ConsultasMedicas.Core.Entities;
 using ConsultasMedicas.Core.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ConsultasMedicas.API.Controllers
 {

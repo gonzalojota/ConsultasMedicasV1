@@ -22,6 +22,28 @@ namespace ConsultasMedicas.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("ConsultasMedicas.Core.Entities.Ciudad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("DepartamentoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartamentoId");
+
+                    b.ToTable("Ciudades");
+                });
+
             modelBuilder.Entity("ConsultasMedicas.Core.Entities.Consulta", b =>
                 {
                     b.Property<int>("Id")
@@ -68,6 +90,23 @@ namespace ConsultasMedicas.API.Migrations
                     b.ToTable("ConsultasPacientes");
                 });
 
+            modelBuilder.Entity("ConsultasMedicas.Core.Entities.Departamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departamentos");
+                });
+
             modelBuilder.Entity("ConsultasMedicas.Core.Entities.Medico", b =>
                 {
                     b.Property<int>("Id")
@@ -80,9 +119,11 @@ namespace ConsultasMedicas.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Especialidad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("EspecialidadId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicoEspcialidadId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -90,7 +131,26 @@ namespace ConsultasMedicas.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EspecialidadId");
+
                     b.ToTable("Medicos");
+                });
+
+            modelBuilder.Entity("ConsultasMedicas.Core.Entities.MedicoEspecialidad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Especialidades");
                 });
 
             modelBuilder.Entity("ConsultasMedicas.Core.Entities.Notificacion", b =>
@@ -129,18 +189,21 @@ namespace ConsultasMedicas.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("CiudadId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DepartamentoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("FechaCreacion")
+                    b.Property<DateTime?>("FechaCreacion")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("FechaDiagnostico")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("FechaModificacion")
+                    b.Property<DateTime?>("FechaModificacion")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaNacimiento")
@@ -151,18 +214,57 @@ namespace ConsultasMedicas.API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("PrimerContactoEmail")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PrimerContactoNombre")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PrimerContactoParentesco")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("PrimerContactoRecibeEmailEventos")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PrimerContactoTelefono")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("PrimerNombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("RecibeEmailEventos")
+                        .HasColumnType("bit");
+
                     b.Property<string>("SegundoApellido")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("SegundoContactoEmail")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("SegundoContactoNombre")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("SegundoContactoParentesco")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("SegundoContactoRecibeEmailEventos")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SegundoContactoTelefono")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("SegundoNombre")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -170,21 +272,24 @@ namespace ConsultasMedicas.API.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("TelefonoContacto")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("UsuarioCreacion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UsuarioModificacion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
+                    b.HasIndex("CiudadId");
+
+                    b.HasIndex("DepartamentoId");
+
                     b.ToTable("Pacientes");
+                });
+
+            modelBuilder.Entity("ConsultasMedicas.Core.Entities.Ciudad", b =>
+                {
+                    b.HasOne("ConsultasMedicas.Core.Entities.Departamento", "Departamento")
+                        .WithMany("Ciudades")
+                        .HasForeignKey("DepartamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Departamento");
                 });
 
             modelBuilder.Entity("ConsultasMedicas.Core.Entities.ConsultaMedico", b =>
@@ -225,6 +330,15 @@ namespace ConsultasMedicas.API.Migrations
                     b.Navigation("Paciente");
                 });
 
+            modelBuilder.Entity("ConsultasMedicas.Core.Entities.Medico", b =>
+                {
+                    b.HasOne("ConsultasMedicas.Core.Entities.MedicoEspecialidad", "Especialidad")
+                        .WithMany()
+                        .HasForeignKey("EspecialidadId");
+
+                    b.Navigation("Especialidad");
+                });
+
             modelBuilder.Entity("ConsultasMedicas.Core.Entities.Notificacion", b =>
                 {
                     b.HasOne("ConsultasMedicas.Core.Entities.Paciente", "Paciente")
@@ -236,11 +350,31 @@ namespace ConsultasMedicas.API.Migrations
                     b.Navigation("Paciente");
                 });
 
+            modelBuilder.Entity("ConsultasMedicas.Core.Entities.Paciente", b =>
+                {
+                    b.HasOne("ConsultasMedicas.Core.Entities.Ciudad", "Ciudad")
+                        .WithMany()
+                        .HasForeignKey("CiudadId");
+
+                    b.HasOne("ConsultasMedicas.Core.Entities.Departamento", "Departamento")
+                        .WithMany()
+                        .HasForeignKey("DepartamentoId");
+
+                    b.Navigation("Ciudad");
+
+                    b.Navigation("Departamento");
+                });
+
             modelBuilder.Entity("ConsultasMedicas.Core.Entities.Consulta", b =>
                 {
                     b.Navigation("ConsultaMedicos");
 
                     b.Navigation("ConsultaPacientes");
+                });
+
+            modelBuilder.Entity("ConsultasMedicas.Core.Entities.Departamento", b =>
+                {
+                    b.Navigation("Ciudades");
                 });
 
             modelBuilder.Entity("ConsultasMedicas.Core.Entities.Medico", b =>

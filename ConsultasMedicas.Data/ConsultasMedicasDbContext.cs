@@ -15,6 +15,11 @@ namespace ConsultasMedicas.Data.Context
         public DbSet<Notificacion> Notificaciones { get; set; }
         public DbSet<ConsultaPaciente> ConsultasPacientes { get; set; }
         public DbSet<ConsultaMedico> ConsultasMedicos { get; set; }
+        public DbSet<Departamento> Departamentos { get; set; }
+        public DbSet<Ciudad> Ciudades { get; set; }
+
+        public DbSet<MedicoEspecialidad> Especialidades { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,6 +50,12 @@ namespace ConsultasMedicas.Data.Context
                 .HasOne(cm => cm.Medico)
                 .WithMany(m => m.ConsultaMedicos)
                 .HasForeignKey(cm => cm.MedicoId);
+
+            modelBuilder.Entity<Paciente>()
+                .HasOne(p => p.Ciudad);
+
+            modelBuilder.Entity<Medico>()
+                .HasOne(cm => cm.Especialidad);
         }
     }
 }

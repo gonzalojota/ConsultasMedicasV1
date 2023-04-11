@@ -4,33 +4,31 @@
 
 namespace ConsultasMedicas.API.Migrations
 {
-    public partial class Pacienteeliminosegundos : Migration
+    public partial class PacienteSacoAuditoria : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "SegundoApellido",
+                name: "UsuarioCreacion",
                 table: "Pacientes");
 
             migrationBuilder.DropColumn(
-                name: "SegundoNombre",
+                name: "UsuarioModificacion",
                 table: "Pacientes");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "SegundoApellido",
+                name: "UsuarioCreacion",
                 table: "Pacientes",
-                type: "nvarchar(50)",
-                maxLength: 50,
+                type: "nvarchar(max)",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "SegundoNombre",
+                name: "UsuarioModificacion",
                 table: "Pacientes",
-                type: "nvarchar(50)",
-                maxLength: 50,
+                type: "nvarchar(max)",
                 nullable: true);
         }
     }

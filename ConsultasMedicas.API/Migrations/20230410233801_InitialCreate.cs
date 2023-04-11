@@ -1,13 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ConsultasMedicas.Data.Migrations
+namespace ConsultasMedicas.API.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Ciudades",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ciudades", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Consultas",
                 columns: table => new
@@ -19,6 +33,19 @@ namespace ConsultasMedicas.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Consultas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Departamentos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departamentos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,15 +69,44 @@ namespace ConsultasMedicas.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrimerNombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SegundoNombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PrimerApellido = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SegundoApellido = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     FechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Telefono = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    RecibeEmailEventos = table.Column<bool>(type: "bit", nullable: false),
+                    PrimerContactoNombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PrimerContactoEmail = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PrimerContactoRecibeEmailEventos = table.Column<bool>(type: "bit", nullable: false),
+                    PrimerContactoTelefono = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    PrimerContactoParentesco = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    SegundoContactoNombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    SegundoContactoEmail = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    SegundoContactoRecibeEmailEventos = table.Column<bool>(type: "bit", nullable: false),
+                    SegundoContactoTelefono = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    SegundoContactoParentesco = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    DepartamentoId = table.Column<int>(type: "int", nullable: true),
+                    CiudadId = table.Column<int>(type: "int", nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UsuarioCreacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UsuarioModificacion = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pacientes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pacientes_Ciudades_CiudadId",
+                        column: x => x.CiudadId,
+                        principalTable: "Ciudades",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Pacientes_Departamentos_DepartamentoId",
+                        column: x => x.DepartamentoId,
+                        principalTable: "Departamentos",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -137,6 +193,16 @@ namespace ConsultasMedicas.Data.Migrations
                 name: "IX_Notificaciones_PacienteId",
                 table: "Notificaciones",
                 column: "PacienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pacientes_CiudadId",
+                table: "Pacientes",
+                column: "CiudadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pacientes_DepartamentoId",
+                table: "Pacientes",
+                column: "DepartamentoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -158,6 +224,12 @@ namespace ConsultasMedicas.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Pacientes");
+
+            migrationBuilder.DropTable(
+                name: "Ciudades");
+
+            migrationBuilder.DropTable(
+                name: "Departamentos");
         }
     }
 }

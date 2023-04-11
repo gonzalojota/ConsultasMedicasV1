@@ -10,14 +10,14 @@ namespace ConsultasMedicas.Common.DTOs
         public string PrimerNombre { get; set; }
 
         [MaxLength(50)]
-        public string SegundoNombre { get; set; } = string.Empty;
+        public string? SegundoNombre { get; set; }
 
         [Required]
         [MaxLength(50)]
         public string PrimerApellido { get; set; }
 
         [MaxLength(50)]
-        public string SegundoApellido { get; set; } = string.Empty;
+        public string? SegundoApellido { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -26,26 +26,48 @@ namespace ConsultasMedicas.Common.DTOs
         [Required]
         [EmailAddress]
         [MaxLength(100)]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Phone]
         [MaxLength(20)]
-        public string Telefono { get; set; }
+        public string? Telefono { get; set; }
+
+        public Boolean RecibeEmailEventos { get; set; }
+
+        [MaxLength(100)]
+        public string? PrimerContactoNombre { get; set; }
+
+        [EmailAddress]
+        [MaxLength(100)]
+        public string? PrimerContactoEmail { get; set; }
+
+        public Boolean PrimerContactoRecibeEmailEventos { get; set; }
 
         [Phone]
         [MaxLength(20)]
-        public string TelefonoContacto { get; set; }
+        public string? PrimerContactoTelefono { get; set; }
 
-        [Required]
-        public DateTime FechaDiagnostico { get; set; }
+        [MaxLength(20)]
+        public string? PrimerContactoParentesco { get; set; }
 
-        [Required]
         [MaxLength(100)]
-        public string UsuarioCreacion { get; set; }
+        public string? SegundoContactoNombre { get; set; }
 
-        [Required]
+        [EmailAddress]
         [MaxLength(100)]
-        public string UsuarioModificacion { get; set; }
+        public string? SegundoContactoEmail { get; set; }
+
+        public Boolean SegundoContactoRecibeEmailEventos { get; set; }
+
+        [Phone]
+        [MaxLength(20)]
+        public string? SegundoContactoTelefono { get; set; }
+
+        [MaxLength(20)]
+        public string? SegundoContactoParentesco { get; set; }
+
+        public int DepartamentoId { get; set; }
+
+        public int CiudadId { get; set; }
     }
-
 }
