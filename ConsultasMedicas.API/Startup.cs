@@ -4,15 +4,18 @@ using ConsultasMedicas.Core.Services;
 using ConsultasMedicas.Data.Context;
 using ConsultasMedicas.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace ConsultasMedicas.API
 {
     public class Startup
     {
+       
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+         
         }
 
         public IConfiguration Configuration { get; }
@@ -20,12 +23,15 @@ namespace ConsultasMedicas.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+           
+
             services.AddControllers();
 
             // Configurar la base de datos
             services.AddDbContext<ConsultasMedicasDbContext>(options =>
-    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-    b => b.MigrationsAssembly("ConsultasMedicas.API")));
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            b => b.MigrationsAssembly("ConsultasMedicas.API")));
 
             services.AddSwaggerGen(c =>
             {
@@ -45,7 +51,6 @@ namespace ConsultasMedicas.API
                     Description = "Production server (HTTPS)"
                 });
             });
-
 
             services.AddCors(options =>
             {
@@ -73,13 +78,23 @@ namespace ConsultasMedicas.API
             services.AddScoped<IMedicoRepository, MedicoRepository>();
             services.AddScoped<INotificacionRepository, NotificacionRepository>();
 
-
+        
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder
+                    .AddConsole()
+                    .AddDebug();
+            });
+            var logger = loggerFactory.CreateLogger<Startup>();
+            logger.LogInformation("Iniciando aplicación...");
+            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -107,6 +122,9 @@ namespace ConsultasMedicas.API
             {
                 endpoints.MapControllers();
             });
+
+            logger.LogInformation("Aplicación iniciada correctamente.");
+
         }
     }
 }

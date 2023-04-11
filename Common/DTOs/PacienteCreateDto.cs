@@ -37,13 +37,12 @@ namespace ConsultasMedicas.Common.DTOs
         [MaxLength(100)]
         public string? PrimerContactoNombre { get; set; }
 
-        [EmailAddress]
         [MaxLength(100)]
-        public string? PrimerContactoEmail { get; set; }
+        public string? PrimerContactoEmail { get; set; } 
 
         public Boolean PrimerContactoRecibeEmailEventos { get; set; }
 
-        [Phone]
+       
         [MaxLength(20)]
         public string? PrimerContactoTelefono { get; set; }
 
@@ -53,15 +52,13 @@ namespace ConsultasMedicas.Common.DTOs
         [MaxLength(100)]
         public string? SegundoContactoNombre { get; set; }
 
-        [EmailAddress]
+       
         [MaxLength(100)]
         public string? SegundoContactoEmail { get; set; }
 
         public Boolean SegundoContactoRecibeEmailEventos { get; set; }
 
-        [Phone]
-        [MaxLength(20)]
-        public string? SegundoContactoTelefono { get; set; }
+       [MaxLength(20)] public string? SegundoContactoTelefono { get; set; }
 
         [MaxLength(20)]
         public string? SegundoContactoParentesco { get; set; }

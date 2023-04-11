@@ -10,10 +10,13 @@ namespace ConsultasMedicas.API.Controllers
     public class PacientesController : ControllerBase
     {
         private readonly IPacienteService _pacienteService;
+        private readonly ILogger<PacientesController> _logger;
 
-        public PacientesController(IPacienteService pacienteService)
+        public PacientesController(IPacienteService pacienteService, ILogger<PacientesController> logger)
         {
             _pacienteService = pacienteService;
+            _logger = logger;
+
         }
 
         [HttpGet]
@@ -37,7 +40,11 @@ namespace ConsultasMedicas.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(PacienteCreateDto paciente)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError($"Error de validación: {ModelState}");
+                return BadRequest(ModelState);
+            }
 
             var result = await _pacienteService.AddPacienteAsync(paciente);
 
